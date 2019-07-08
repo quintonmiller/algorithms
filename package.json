@@ -1,0 +1,22 @@
+{
+  "name": "quintonmiller-algorithms",
+  "version": "1.0.0",
+  "description": "Algorithms",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quintonmiller/algorithms.git"
+  },
+  "author": "Quinton Miller",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/quintonmiller/algorithms/issues"
+  },
+  "homepage": "https://github.com/quintonmiller/algorithms#readme",
+  "devDependencies": {
+    "typescript": "^3.5.2"
+  }
+}
