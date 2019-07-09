@@ -1,6 +1,6 @@
 import { LinkedListNode } from "./LinkedListNode";
-import {CompareFunction} from "../../common/CompareFunction";
-import {defaultCompareFunction} from "../../common/defaultCompareFunction";
+import { defaultCompareFunction } from "../../common/defaultCompareFunction";
+import { CompareFunction } from "../../common/CompareFunction";
 
 export class LinkedList<T> {
 
@@ -9,7 +9,7 @@ export class LinkedList<T> {
 
     constructor(private compareFn: CompareFunction<T> = defaultCompareFunction as any) {}
 
-    public prepend(value: T): LinkedList<T> {
+    public prepend(value: T): LinkedListNode {
 
         const newNode = new LinkedListNode(value, this.head);
 
@@ -19,17 +19,23 @@ export class LinkedList<T> {
             this.tail = newNode;
         }
 
-        return this;
+        return newNode;
     }
 
-    public append(value: T): LinkedList<T> {
+    public append(value: T): LinkedListNode {
 
         const newNode = new LinkedListNode(value);
 
-        this.tail.next = newNode;
-        this.tail = newNode;
+        if (this.tail) {
 
-        return this;
+            this.tail.next = newNode;
+            this.tail = newNode;
+        }
+        else {
+            this.head = this.tail = newNode;
+        }
+
+        return newNode;
     }
 
     public delete(value: T): LinkedListNode {
@@ -45,7 +51,7 @@ export class LinkedList<T> {
         }
 
         // Loop through all nodes or until found node to delete
-        while (tempNode && deletedNode === null) {
+        while (tempNode && tempNode.next && deletedNode === null) {
 
             // If deleting next node
             if (this.compareFn(tempNode.next.val, value) === 0) {
@@ -95,5 +101,19 @@ export class LinkedList<T> {
         }
 
         return arr;
+    }
+
+    public get length(): number {
+
+        let len = 0;
+        let tempNode = this.head;
+
+        while (tempNode) {
+
+            len++;
+            tempNode = tempNode.next;
+        }
+
+        return len;
     }
 }
